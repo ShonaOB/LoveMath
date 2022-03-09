@@ -42,11 +42,13 @@ function checkAnswer() {
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect) {
-        alert("Hey! you got it right! :)")
+        alert("Hey! you got it right! :)");
+        incrementScore();
     } else {
-        alert (`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}`)
+        alert (`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}`);
+        incrementWrongAnswer();
     }
-    runGame(calculateCorrectAnswer[1]);
+    runGame(calculatedAnswer[1]);
 }
 /**
  * Gets the operands (the number) and the operator (plus minus etd.)
@@ -64,12 +66,21 @@ function calculateCorrectAnswer() {
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
 }
-
+/**
+ * gets the current score from the DOM and increments it by 1
+ */
 function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
+        
+    }
 
-}
+/**
+ * gets the current incorrect score from the DOM and increments it by 1
+ */
 function incrementWrongAnswer() {
-
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
